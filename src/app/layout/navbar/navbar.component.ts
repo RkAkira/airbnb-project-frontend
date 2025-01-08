@@ -1,5 +1,5 @@
-import { faLocation } from './../../../../node_modules/@fortawesome/free-solid-svg-icons/faLocation.d';
-import { Component, OnInit } from '@angular/core';
+import { faLocation } from '@fortawesome/free-solid-svg-icons';
+import { Component, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CategoryComponent } from './category/category.component';
@@ -8,6 +8,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { Menu, MenuModule } from 'primeng/menu';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
+import { ToastService } from '../toast.service';
 
 @Component({
   selector: 'app-navbar',
@@ -22,13 +23,16 @@ export class NavbarComponent implements OnInit {
   guest:string = "Add guest";
   dates: string = "Add dates";
 
+  toastService: ToastService = inject(ToastService);
+
   // login() => this.authService.login();
   // logout() => this.authService.logout();
 
   currentMenuItems: MenuItem[]|undefined = []
 
   ngOnInit(): void {
-    this.fetchMenu();
+    this.currentMenuItems = this.fetchMenu();
+    this.toastService.send({severity: "info" ,text: "Navbar loaded"});
   }
 
   private fetchMenu() {
@@ -44,3 +48,5 @@ export class NavbarComponent implements OnInit {
   }
 
 }
+
+
