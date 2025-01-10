@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentMenuItems = this.fetchMenu();
-    this.toastService.send({severity: "info" ,text: "Navbar loaded"});
+    this.toastService.send({severity: 'success' ,summary: 'Success', detail: "Navbar loaded"});
   }
 
   private fetchMenu() {

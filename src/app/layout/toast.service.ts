@@ -8,7 +8,7 @@ import { MessageModule } from 'primeng/message'; // Adjust the import path as ne
 export class ToastService {
 
   INIT_STATE = "INIT";
-  private send$ = new BehaviorSubject<MessageModule>({text: this.INIT_STATE});
+  private send$ = new BehaviorSubject<MessageModule>({summary: 'success', detail: this.INIT_STATE, severity: 'success'});
   sendSub = this.send$.asObservable();
 
   public send(message: MessageModule): void {

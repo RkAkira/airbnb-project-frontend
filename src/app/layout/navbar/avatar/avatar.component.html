@@ -1,5 +1,5 @@
 <div class="flex align-content-center">
-    @if(imageUrl != null){
+    @if(imageUrl() != null){
         <img src="{{imageUrl()}}" alt="user-avatar" class="border-round-3xl avatar"
         [ngClass]="avatarSize()" />
     }
