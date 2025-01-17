@@ -1,5 +1,6 @@
+import { AuthService } from './../../core/auth/auth.service';
 import { faLocation } from '@fortawesome/free-solid-svg-icons';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
 import { CategoryComponent } from './category/category.component';
@@ -9,6 +10,7 @@ import { Menu, MenuModule } from 'primeng/menu';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { ToastService } from '../toast.service';
+import { User } from '../../core/model/user.model';
 
 @Component({
   selector: 'app-navbar',
@@ -24,27 +26,68 @@ export class NavbarComponent implements OnInit {
   dates: string = "Add dates";
 
   toastService: ToastService = inject(ToastService);
+  authService = inject(AuthService);
 
-  // login() => this.authService.login();
-  // logout() => this.authService.logout();
+  login = () => this.authService.login();
 
-  currentMenuItems: MenuItem[]|undefined = []
+  logout = () => this.authService.logout();
 
-  ngOnInit(): void {
-    this.currentMenuItems = this.fetchMenu();
-    this.toastService.send({severity: 'success' ,summary: 'Success', detail: "Navbar loaded"});
+  currentMenuItems: MenuItem[]|undefined = [];
+  connectedUser: User = {email: this.authService.notConnected}; 
+
+  constructor() {
+    effect(() => {
+      if(this.authService.fetchUser().status === 'OK'){
+      this.connectedUser = this.authService.fetchUser().value!;
+      this.currentMenuItems = this.fetchMenu();
+      }
+   });
   }
 
-  private fetchMenu() {
-    return [
-      {
-        label:"Sign up",
-        styleClass: "font-bold"
-      },
-      {
-        label:"Log in",
-      }
-    ]
+
+  ngOnInit(): void {
+    this.authService.fetch(false);
+  }
+
+  private fetchMenu(): MenuItem[] {
+    if (this.authService.isAuthenticated()) {
+      return [
+        {
+          label: "My properties",
+          routerLink: "landlord/properties",
+          visible: this.hasToBeLandlord(),
+        },
+        {
+          label: "My booking",
+          routerLink: "booking",
+        },
+        {
+          label: "My reservation",
+          routerLink: "landlord/reservation",
+          visible: this.hasToBeLandlord(),
+        },
+        {
+          label: "Log out",
+          command: this.logout
+        },
+      ]
+    } else {
+      return [
+        {
+          label: "Sign up",
+          styleClass: "font-bold",
+          command: this.login
+        },
+        {
+          label: "Log in",
+          command: this.login
+        }
+      ]
+    }
+  }
+
+  hasToBeLandlord(): boolean {
+    return this.authService.hasAnyAuthority('ROLE_LANDLORD');
   }
 
 }
