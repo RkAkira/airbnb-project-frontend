@@ -9,10 +9,10 @@ export const authExpired: HttpInterceptorFn = (
         const authService = inject(AuthService);
         return next(req).pipe(tap({error: (err: HttpErrorResponse) => 
             {
-                if(err.status === 401 && err.url?.includes('/api/auth') 
+                if(err.status === 401 && err.url!.includes('/api/auth') 
                     && authService.isAuthenticated())
                 {
-                    authService.logout();
+                    authService.login();
                 }
             }
         }));

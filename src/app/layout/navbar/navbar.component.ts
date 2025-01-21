@@ -6,7 +6,7 @@ import { ButtonModule } from 'primeng/button';
 import { CategoryComponent } from './category/category.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ToolbarModule } from 'primeng/toolbar';
-import { Menu, MenuModule } from 'primeng/menu';
+import { MenuModule } from 'primeng/menu';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { ToastService } from '../toast.service';

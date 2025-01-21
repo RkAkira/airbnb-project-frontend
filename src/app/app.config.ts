@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig,  } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
@@ -8,7 +8,7 @@ import { provideHttpClient, withInterceptors, withXsrfConfiguration } from '@ang
 import { authExpired } from './core/auth/auth-expired.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true }), 
+  providers: [ 
     provideRouter(routes), 
     provideAnimations(), 
     provideHttpClient(

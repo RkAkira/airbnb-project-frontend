@@ -11,7 +11,7 @@ import { environment } from '../../../environments/environment.development';
 })
 export class AuthService {
 
-  http: HttpClient = inject(HttpClient);
+  http = inject(HttpClient);
   location = inject(Location);
 
   notConnected = "NOT_CONNECTED";
@@ -21,9 +21,9 @@ export class AuthService {
 
   fetch(forceResync:boolean):void{
     this.fetchHttpUser(forceResync).subscribe({
-      next: (user: User) => 
+      next: user => 
         this.fetchUser$.set(State.Builder<User>().forSuccess(user)),
-      error: (err: any) => {
+      error: err => {
         if (err.status === HttpStatusCode.Unauthorized && this.isAuthenticated()) {
           this.fetchUser$.set(State.Builder<User>().forSuccess({email: this.notConnected,}));
         } else {
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   login():void{
-    location.href = `${location.origin}${this.location.prepareExternalUrl('oauth2/authorization/google')}`;
+    location.href = `${location.origin}${this.location.prepareExternalUrl('oauth2/authorization/okta')}`;
   }
 
   logout():void{
