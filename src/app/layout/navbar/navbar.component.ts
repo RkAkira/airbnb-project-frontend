@@ -7,10 +7,11 @@ import { CategoryComponent } from './category/category.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { MenuModule } from 'primeng/menu';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { ToastService } from '../toast.service';
 import { User } from '../../core/model/user.model';
+import { PropertiesCreateComponent } from '../../landlord/properties-create/properties-create.component';
 
 @Component({
   selector: 'app-navbar',
@@ -27,6 +28,9 @@ export class NavbarComponent implements OnInit {
 
   toastService: ToastService = inject(ToastService);
   authService = inject(AuthService);
+  dialogService = inject(DialogService);
+  ref: DynamicDialogRef|undefined;
+
 
   login = () => this.authService.login();
 
@@ -89,6 +93,20 @@ export class NavbarComponent implements OnInit {
   hasToBeLandlord(): boolean {
     return this.authService.hasAnyAuthority('ROLE_LANDLORD');
   }
+
+  openNewListing(): void {
+
+    this.ref = this.dialogService.open(PropertiesCreateComponent, {
+      header: 'Airbnb your home',
+      width: '60%',
+      closable: true,
+      focusOnShow: true,
+      modal: true,
+      showHeader: true,
+    });
+
+  }
+
 
 }
 

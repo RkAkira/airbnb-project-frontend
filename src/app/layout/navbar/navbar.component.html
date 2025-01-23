@@ -23,7 +23,7 @@
     </div>
     <div class="p-toolbar-group-end sm:hidden md:flex">
         @if (authService.isAuthenticated()) {
-            <a class="p-button p-button-link">Airbnb yout home</a>
+            <a class="p-button p-button-link" (click)="openNewListing()">Airbnb your home</a>
         }
         <p-menu #menu [model]="currentMenuItems" [popup]="true"></p-menu>
         <button (click)="menu.toggle($event)" class="menu p-button flex align-content-center 
