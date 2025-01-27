@@ -1,3 +1,7 @@
+@use "sass:color";
+@use "../_variables";
+@use "blue/theme";
+
 @mixin focused-ring($ring-color) {
     box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px $ring-color,
         0 1px 2px 0 rgba(0, 0, 0, 1);
@@ -10,16 +14,16 @@
 
     .p-selectbutton > .p-button,
     .p-togglebutton.p-button {
-        transition: background-color $transitionDuration,
-            border-color $transitionDuration, box-shadow $transitionDuration;
+        transition: background-color variables.$transitionDuration,
+            border-color variables.$transitionDuration, box-shadow variables.$transitionDuration;
     }
 
     .p-accordion {
         .p-accordion-header {
             .p-accordion-header-link {
-                transition: background-color $transitionDuration,
-                    border-color $transitionDuration,
-                    box-shadow $transitionDuration;
+                transition: background-color variables.$transitionDuration,
+                    border-color variables.$transitionDuration,
+                    box-shadow variables.$transitionDuration;
             }
         }
     }
@@ -28,9 +32,9 @@
         .p-tabview-nav {
             li {
                 .p-tabview-nav-link {
-                    transition: background-color $transitionDuration,
-                        border-color $transitionDuration,
-                        box-shadow $transitionDuration;
+                    transition: background-color variables.$transitionDuration,
+                        border-color variables.$transitionDuration,
+                        box-shadow variables.$transitionDuration;
                 }
             }
         }
@@ -40,9 +44,9 @@
         .p-tabmenu-nav {
             .p-tabmenuitem {
                 .p-menuitem-link {
-                    transition: background-color $transitionDuration,
-                        border-color $transitionDuration,
-                        box-shadow $transitionDuration;
+                    transition: background-color variables.$transitionDuration,
+                        border-color variables.$transitionDuration,
+                        box-shadow variables.$transitionDuration;
                 }
             }
         }
@@ -50,50 +54,50 @@
 
     .p-carousel {
         .p-carousel-indicators .p-carousel-indicator.p-highlight button {
-            background-color: $primaryColor;
+            background-color: theme.$primaryColor;
         }
     }
 
     .p-galleria {
         .p-galleria-indicators .p-galleria-indicator.p-highlight button {
-            background-color: $primaryColor;
+            background-color: theme.$primaryColor;
         }
     }
 
     .p-button {
         &:focus {
-            @include focused-ring(scale-color($buttonBg, $lightness: 50%));
+            @include focused-ring(color.scale(variables.$buttonBg, $lightness: 50%));
         }
 
         &.p-button-secondary:enabled:focus {
             @include focused-ring(
-                scale-color($secondaryButtonBg, $lightness: 50%)
+                color.scale(variables.$secondaryButtonBg, $lightness: 50%)
             );
         }
 
         &.p-button-success:enabled:focus {
             @include focused-ring(
-                scale-color($successButtonBg, $lightness: 50%)
+                color.scale(variables.$successButtonBg, $lightness: 50%)
             );
         }
 
         &.p-button-info:enabled:focus {
-            @include focused-ring(scale-color($infoButtonBg, $lightness: 50%));
+            @include focused-ring(color.scale(variables.$infoButtonBg, $lightness: 50%));
         }
 
         &.p-button-warning:enabled:focus {
             @include focused-ring(
-                scale-color($warningButtonBg, $lightness: 50%)
+                color.scale(variables.$warningButtonBg, $lightness: 50%)
             );
         }
 
         &.p-button-help:enabled:focus {
-            @include focused-ring(scale-color($helpButtonBg, $lightness: 50%));
+            @include focused-ring(color.scale(variables.$helpButtonBg, $lightness: 50%));
         }
 
         &.p-button-danger:enabled:focus {
             @include focused-ring(
-                scale-color($dangerButtonBg, $lightness: 50%)
+                color.scale(variables.$dangerButtonBg, $lightness: 50%)
             );
         }
     }
@@ -102,11 +106,11 @@
         .p-datatable-tbody {
             > tr {
                 &.p-datatable-dragpoint-top > td {
-                    box-shadow: inset 0 2px 0 0 $primaryColor;
+                    box-shadow: inset 0 2px 0 0 theme.$primaryColor;
                 }
 
                 &.p-datatable-dragpoint-bottom > td {
-                    box-shadow: inset 0 -2px 0 0 $primaryColor;
+                    box-shadow: inset 0 -2px 0 0 theme.$primaryColor;
                 }
             }
         }
@@ -114,7 +118,7 @@
 
     .p-speeddial-item {
         &.p-focus > .p-speeddial-action {
-            @include focused-ring(scale-color($buttonBg, $lightness: 50%));
+            @include focused-ring(color.scale(variables.$buttonBg, $lightness: 50%));
         }
     }
 
@@ -128,17 +132,17 @@
 
     .p-picklist-buttons .p-button,
     .p-orderlist-controls .p-button {
-        transition: opacity $transitionDuration,
-            background-color $transitionDuration, color $transitionDuration,
-            border-color $transitionDuration, box-shadow $transitionDuration;
+        transition: opacity variables.$transitionDuration,
+            background-color variables.$transitionDuration, color variables.$transitionDuration,
+            border-color variables.$transitionDuration, box-shadow variables.$transitionDuration;
     }
 
     .p-steps {
         .p-steps-item {
             &.p-highlight {
                 .p-steps-number {
-                    background: $primaryColor;
-                    color: $primaryTextColor;
+                    background: theme.$primaryColor;
+                    color: theme.$primaryTextColor;
                 }
             }
         }

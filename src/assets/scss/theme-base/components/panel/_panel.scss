@@ -1,47 +1,50 @@
+@use "../_variables";
+@use "_mixins";
+
 .p-panel {
     .p-panel-header {
-        border: $panelHeaderBorder;
-        padding: $panelHeaderPadding;
-        background: $panelHeaderBg;
-        color: $panelHeaderTextColor;
-        border-top-right-radius: $borderRadius;
-        border-top-left-radius: $borderRadius;
+        border: variables.$panelHeaderBorder;
+        padding: variables.$panelHeaderPadding;
+        background: variables.$panelHeaderBg;
+        color: variables.$panelHeaderTextColor;
+        border-top-right-radius: variables.$borderRadius;
+        border-top-left-radius: variables.$borderRadius;
 
         .p-panel-title {
-            font-weight: $panelHeaderFontWeight;
+            font-weight: variables.$panelHeaderFontWeight;
         }
 
         .p-panel-header-icon {
-            @include action-icon();
+            @include mixins.action-icon();
         }
     }
 
     &.p-panel-toggleable {
         .p-panel-header {
-            padding: $panelToggleableHeaderPadding;
+            padding: variables.$panelToggleableHeaderPadding;
         }
     }
 
     .p-panel-content {
-        padding: $panelContentPadding;
-        border: $panelContentBorder;
-        background: $panelContentBg;
-        color: $panelContentTextColor;
+        padding: variables.$panelContentPadding;
+        border: variables.$panelContentBorder;
+        background: variables.$panelContentBg;
+        color: variables.$panelContentTextColor;
         border-top: 0 none;
 
         &:last-child {
-            border-bottom-right-radius: $borderRadius;
-            border-bottom-left-radius: $borderRadius;
+            border-bottom-right-radius: variables.$borderRadius;
+            border-bottom-left-radius: variables.$borderRadius;
         }
     }
 
     .p-panel-footer {
-        padding: $panelFooterPadding;
-        border: $panelFooterBorder;
-        background: $panelFooterBg;
-        color: $panelFooterTextColor;
-        border-bottom-right-radius: $borderRadius;
-        border-bottom-left-radius: $borderRadius;
+        padding: variables.$panelFooterPadding;
+        border: variables.$panelFooterBorder;
+        background: variables.$panelFooterBg;
+        color: variables.$panelFooterTextColor;
+        border-bottom-right-radius: variables.$borderRadius;
+        border-bottom-left-radius: variables.$borderRadius;
         border-top: 0 none;
     }
 
@@ -52,7 +55,7 @@
 
     .p-panel-icons-start {
         order: 0;
-        margin-right: $inlineSpacing;
+        margin-right: variables.$inlineSpacing;
     }
 
     .p-panel-icons-center {

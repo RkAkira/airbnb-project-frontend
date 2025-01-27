@@ -1,62 +1,66 @@
+@use "../_variables";
+@use "_mixins";
+@use "../../../lara-light/blue/theme";
+
 .p-radiobutton {
-    width: $radiobuttonWidth;
-    height: $radiobuttonHeight;
+    width: variables.$radiobuttonWidth;
+    height: variables.$radiobuttonHeight;
 
     .p-radiobutton-box {
-        border: $radiobuttonBorder;
-        background: $inputBg;
-        width: $radiobuttonWidth;
-        height: $radiobuttonHeight;
-        color: $textColor;
+        border: variables.$radiobuttonBorder;
+        background: variables.$inputBg;
+        width: variables.$radiobuttonWidth;
+        height: variables.$radiobuttonHeight;
+        color: variables.$textColor;
         border-radius: 50%;
-        transition: $formElementTransition;
+        transition: variables.$formElementTransition;
 
         &:not(.p-disabled):not(.p-highlight):hover {
-            border-color: $inputHoverBorderColor;
+            border-color: variables.$inputHoverBorderColor;
         }
 
         &:not(.p-disabled).p-focus {
-            @include focused-input();
+            @include mixins.focused-input();
         }
 
         .p-radiobutton-icon {
-            width: $radiobuttonIconSize;
-            height: $radiobuttonIconSize;
-            transition-duration: $transitionDuration;
-            background-color: $radiobuttonIconActiveColor;
+            width: variables.$radiobuttonIconSize;
+            height: variables.$radiobuttonIconSize;
+            transition-duration: variables.$transitionDuration;
+            background-color: variables.$radiobuttonIconActiveColor;
         }
 
         &.p-highlight {
-            border-color: $radiobuttonActiveBorderColor;
-            background: $radiobuttonActiveBg;
+            border-color: variables.$radiobuttonActiveBorderColor;
+            background: variables.$radiobuttonActiveBg;
 
             &:not(.p-disabled):hover {
-                border-color: $radiobuttonActiveHoverBorderColor;
-                background: $radiobuttonActiveHoverBg;
-                color: $radiobuttonIconActiveHoverColor;
+                border-color: variables.$radiobuttonActiveHoverBorderColor;
+                background: variables.$radiobuttonActiveHoverBg;
+                color: variables.$radiobuttonIconActiveHoverColor;
             }
         }
     }
 }
 
 p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
-    @include invalid-input();
+    @include mixins.invalid-input();
 }
 
 .p-input-filled {
     .p-radiobutton {
         .p-radiobutton-box {
-            background-color: $inputFilledBg;
+            background-color: variables.$inputFilledBg;
 
             &:not(.p-disabled):hover {
-                background-color: $inputFilledHoverBg;
+                background-color: variables.$inputFilledHoverBg;
             }
 
             &.p-highlight {
-                background: $radiobuttonActiveBg;
+                background: variables.$radiobuttonActiveBg;
     
                 &:not(.p-disabled):hover {
-                    background: $radiobuttonActiveHoverBg;
+                    background: variables.$radiobuttonActiveHoverBg;
                 }
             }
         }
@@ -64,14 +68,14 @@ p-radiobutton.ng-dirty.ng-invalid > .p-radiobutton > .p-radiobutton-box {
 }
 
 .p-radiobutton-label {
-    margin-left: $inlineSpacing;
+    margin-left: variables.$inlineSpacing;
 }
 
-@if ($highlightBg == $radiobuttonActiveBg) {
+@if (theme.$highlightBg == variables.$radiobuttonActiveBg) {
     .p-highlight {
         .p-radiobutton {
             .p-radiobutton-box {
-                border-color: $radiobuttonIconActiveColor;
+                border-color: variables.$radiobuttonIconActiveColor;
             }
         }
     }

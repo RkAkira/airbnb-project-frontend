@@ -1,25 +1,30 @@
+@use "sass:list";
+@use "../_variables";
+@use "_mixins";
+@use "../../../lara-light/blue/theme";
+
 @use 'sass:math';
 .p-cascadeselect {
-    background: $inputBg;
-    border: $inputBorder;
-    transition: $formElementTransition;
-    border-radius: $borderRadius;
+    background: variables.$inputBg;
+    border: variables.$inputBorder;
+    transition: variables.$formElementTransition;
+    border-radius: variables.$borderRadius;
 
     &:not(.p-disabled):hover {
-        border-color: $inputHoverBorderColor;
+        border-color: variables.$inputHoverBorderColor;
     }
 
     &:not(.p-disabled).p-focus {
-        @include focused-input();
+        @include mixins.focused-input();
     }
 
     .p-cascadeselect-label {
         background: transparent;
         border: 0 none;
-        padding: $inputPadding;
+        padding: variables.$inputPadding;
 
         &.p-placeholder {
-            color: $inputPlaceholderTextColor;
+            color: variables.$inputPlaceholderTextColor;
         }
 
         &:enabled:focus {
@@ -30,63 +35,63 @@
 
     .p-cascadeselect-trigger {
         background: transparent;
-        color: $inputIconColor;
-        width: $inputGroupAddOnMinWidth;
-        border-top-right-radius: $borderRadius;
-        border-bottom-right-radius: $borderRadius;
+        color: variables.$inputIconColor;
+        width: variables.$inputGroupAddOnMinWidth;
+        border-top-right-radius: variables.$borderRadius;
+        border-bottom-right-radius: variables.$borderRadius;
     }
 
     &.p-invalid.p-component {
-        @include invalid-input();
+        @include mixins.invalid-input();
     }
 }
 
 .p-cascadeselect-panel {
-    background: $inputOverlayBg;
-    color: $inputListTextColor;
-    border: $inputOverlayBorder;
-    border-radius: $borderRadius;
-    box-shadow: $inputOverlayShadow;
+    background: variables.$inputOverlayBg;
+    color: variables.$inputListTextColor;
+    border: variables.$inputOverlayBorder;
+    border-radius: variables.$borderRadius;
+    box-shadow: variables.$inputOverlayShadow;
 
     .p-cascadeselect-items {
-        padding: $inputListPadding;
+        padding: variables.$inputListPadding;
 
         .p-cascadeselect-item {
-            margin: $inputListItemMargin;
-            border: $inputListItemBorder;
-            color: $inputListItemTextColor;
-            background: $inputListItemBg;
-            transition: $listItemTransition;
-            border-radius: $inputListItemBorderRadius;
+            margin: variables.$inputListItemMargin;
+            border: variables.$inputListItemBorder;
+            color: variables.$inputListItemTextColor;
+            background: variables.$inputListItemBg;
+            transition: variables.$listItemTransition;
+            border-radius: variables.$inputListItemBorderRadius;
 
             &.p-highlight {
-                color: $highlightTextColor;
-                background: $highlightBg;
+                color: theme.$highlightTextColor;
+                background: theme.$highlightBg;
 
                 &.p-focus {
-                    background: $highlightFocusBg;
+                    background: theme.$highlightFocusBg;
                 }
             }
 
             &:not(.p-highlight):not(.p-disabled) {
                 &.p-focus {
-                    color: $inputListItemTextFocusColor;
-                    background: $inputListItemFocusBg;
+                    color: variables.$inputListItemTextFocusColor;
+                    background: variables.$inputListItemFocusBg;
                 }
 
                 &:hover {
-                    color: $inputListItemTextHoverColor;
-                    background: $inputListItemHoverBg;
+                    color: variables.$inputListItemTextHoverColor;
+                    background: variables.$inputListItemHoverBg;
                 }
             }
 
 
             .p-cascadeselect-item-content {
-                padding: $inputListItemPadding;
+                padding: variables.$inputListItemPadding;
             }
 
             .p-cascadeselect-group-icon {
-                font-size: $menuitemSubmenuIconFontSize;
+                font-size: variables.$menuitemSubmenuIconFontSize;
             }
         }
     }
@@ -94,30 +99,30 @@
 
 .p-input-filled {
     .p-cascadeselect {
-        background: $inputFilledBg;
+        background: variables.$inputFilledBg;
 
         &:not(.p-disabled):hover {
-            background-color: $inputFilledHoverBg;
+            background-color: variables.$inputFilledHoverBg;
         }
     
         &:not(.p-disabled).p-focus {
-            background-color: $inputFilledFocusBg;
+            background-color: variables.$inputFilledFocusBg;
         }
     }
 }
 
 p-cascadeselect.ng-dirty.ng-invalid > .p-cascadeselect {
-    @include invalid-input();
+    @include mixins.invalid-input();
 }
 
 p-cascadeselect.p-cascadeselect-clearable {
     .p-cascadeselect-label {
-        padding-right: nth($inputPadding, 2);
+        padding-right: list.nth(variables.$inputPadding, 2);
     }
 
     .p-cascadeselect-clear-icon {
-        color: $inputIconColor;
-        right: $inputGroupAddOnMinWidth;
+        color: variables.$inputIconColor;
+        right: variables.$inputGroupAddOnMinWidth;
     }
 }
 
@@ -126,7 +131,7 @@ p-cascadeselect.p-cascadeselect-clearable {
         .p-cascadeselect-panel {
             box-shadow: none;
             border-radius: 0;
-            padding: math.div($inlineSpacing, 2) 0 math.div($inlineSpacing, 2) $inlineSpacing;
+            padding: math.div(variables.$inlineSpacing, 2) 0 math.div(variables.$inlineSpacing, 2) variables.$inlineSpacing;
         }
     }
 

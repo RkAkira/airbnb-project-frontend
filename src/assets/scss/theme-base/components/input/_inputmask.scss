@@ -1,16 +1,20 @@
+@use "sass:list";
+@use "../_variables";
+@use "_mixins";
+
 @use 'sass:math';
 
 p-inputmask.ng-dirty.ng-invalid > .p-inputtext {
-    @include invalid-input();
+    @include mixins.invalid-input();
 }
 
 p-inputmask.p-inputmask-clearable {
     .p-inputtext {
-        padding-right: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+        padding-right: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
     }
     
     .p-inputmask-clear-icon {
-        color: $inputIconColor;
-        right: nth($inputPadding, 2);
+        color: variables.$inputIconColor;
+        right: list.nth(variables.$inputPadding, 2);
     }
 }

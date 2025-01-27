@@ -1,15 +1,18 @@
+@use "../_variables";
+@use "_mixins";
+
 .p-sidebar {
-    background: $overlayContentBg;
-    color: $panelContentTextColor;
-    border: $overlayContentBorder;
-    box-shadow: $overlayContainerShadow;
+    background: variables.$overlayContentBg;
+    color: variables.$panelContentTextColor;
+    border: variables.$overlayContentBorder;
+    box-shadow: variables.$overlayContainerShadow;
 
     .p-sidebar-header {
-        padding: $panelHeaderPadding;
+        padding: variables.$panelHeaderPadding;
 
         .p-sidebar-close,
         .p-sidebar-icon {
-            @include action-icon();
+            @include mixins.action-icon();
         }
 
         & + .p-sidebar-content {
@@ -18,10 +21,10 @@
     }
 
     .p-sidebar-content {
-        padding: $panelContentPadding;
+        padding: variables.$panelContentPadding;
     }
 
     .p-sidebar-footer {
-        padding: $panelHeaderPadding;
+        padding: variables.$panelHeaderPadding;
     }
 }

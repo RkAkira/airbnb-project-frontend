@@ -1,28 +1,32 @@
+@use "sass:list";
+@use "../_variables";
+@use "_mixins";
+
 p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
-    @include invalid-input();
+    @include mixins.invalid-input();
 }
 
 p-inputnumber.p-inputnumber-clearable {
     .p-inputnumber-input {
-        padding-right: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+        padding-right: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
     }
     
     .p-inputnumber-clear-icon {
-        color: $inputIconColor;
-        right: nth($inputPadding, 2);
+        color: variables.$inputIconColor;
+        right: list.nth(variables.$inputPadding, 2);
     }
 }
 
 p-inputnumber.p-inputnumber-clearable {
     .p-inputnumber-buttons-stacked{
         .p-inputnumber-clear-icon {
-           right: $buttonIconOnlyWidth + nth($inputPadding, 2);
+           right: variables.$buttonIconOnlyWidth + list.nth(variables.$inputPadding, 2);
         }
     }
     
     .p-inputnumber-buttons-horizontal{
         .p-inputnumber-clear-icon {
-           right: $buttonIconOnlyWidth + nth($inputPadding, 2);
+           right: variables.$buttonIconOnlyWidth + list.nth(variables.$inputPadding, 2);
         }
     }
 }

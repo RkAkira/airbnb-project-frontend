@@ -1,9 +1,8 @@
-@import "assets/scss/airbnb-fonts";
-@import "assets/scss/airbnb-variables";
-@import "assets/scss/lara-light/blue/theme";
-/* @import "@primeng/resources/themes/saga-blue/theme";
+@use "assets/scss/airbnb-fonts";
+@use "assets/scss/airbnb-variables";
+/* @forward "assets/scss/lara-light/variables";
  */
-@import "primeflex/primeflex";
+@use "primeflex/primeflex";
 
 /* Order */
 @layer reset, primeng;
@@ -11,16 +10,16 @@
 /* Reset CSS */
 @layer reset {
   .p-dialog {
-    border-radius: 0 0 $dialogBorderRadius $dialogBorderRadius;
+    border-radius: 0 0 airbnb-variables.$dialogBorderRadius airbnb-variables.$dialogBorderRadius;
   }
 
   .p-dialog-header {
-    border-radius: $dialogBorderRadius $dialogBorderRadius 0 0;
+    border-radius: airbnb-variables.$dialogBorderRadius airbnb-variables.$dialogBorderRadius 0 0;
     padding: 24px
   }
 
   .p-dialog-content {
-    border-radius: 0 0 $dialogBorderRadius $dialogBorderRadius;
+    border-radius: 0 0 airbnb-variables.$dialogBorderRadius airbnb-variables.$dialogBorderRadius;
     padding: 0;
   }
 
@@ -50,8 +49,8 @@
   }
 
   .p-datepicker .p-highlight {
-    color: $white;
-    background-color: $black;
+    color: airbnb-variables.$white;
+    background-color: airbnb-variables.$black;
   }
 
   .p-datepicker .p-disabled {
@@ -64,18 +63,18 @@
 }
 
 :root {
-  font-family: $fontFamily !important;
+  font-family: "Inter var", sans-serif !important;
   font-variation-settings: normal !important;
   --font-family: $fontFamily !important;
 }
 
 .text-dark {
-  color: $dark;
+  color: airbnb-variables.$dark;
 }
 
 body {
   margin: 0;
-  color: $textColor
+  color: #4b5563
 }
 
 h1 {

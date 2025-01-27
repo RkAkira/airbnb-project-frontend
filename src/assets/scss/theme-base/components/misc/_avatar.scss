@@ -1,6 +1,8 @@
+@use "../_variables";
+
 .p-avatar {
-    background-color: $avatarBg;
-    border-radius: $borderRadius;
+    background-color: variables.$avatarBg;
+    border-radius: variables.$borderRadius;
 
     &.p-avatar-lg {
         width: 3rem;
@@ -25,6 +27,6 @@
 
 .p-avatar-group {
     .p-avatar {
-        border: 2px solid $panelContentBg;
+        border: 2px solid variables.$panelContentBg;
     }
 }
