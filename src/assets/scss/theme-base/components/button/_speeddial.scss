@@ -1,17 +1,20 @@
+@use "../_variables";
+@use "_mixins";
+
 @use 'sass:math';
 
 .p-speeddial-button {
     &.p-button.p-button-icon-only {
-        width: $speedDialButtonWidth;
-        height: $speedDialButtonHeight;
+        width: variables.$speedDialButtonWidth;
+        height: variables.$speedDialButtonHeight;
 
         .p-button-icon {
-            font-size: $speedDialButtonIconFontSize;
+            font-size: variables.$speedDialButtonIconFontSize;
         }
 
         .p-icon {
-            width: $speedDialButtonIconFontSize;
-            height: $speedDialButtonIconFontSize;
+            width: variables.$speedDialButtonIconFontSize;
+            height: variables.$speedDialButtonIconFontSize;
         }
     }
 }
@@ -22,58 +25,58 @@
 
 .p-speeddial-item {
     &.p-focus > .p-speeddial-action {
-        @include focused();
+        @include mixins.focused();
     }
 }
 
 .p-speeddial-action {
-    width: $speedDialActionWidth;
-    height: $speedDialActionHeight;
-    background: $speedDialActionBg;
-    color: $speedDialActionTextColor;
+    width: variables.$speedDialActionWidth;
+    height: variables.$speedDialActionHeight;
+    background: variables.$speedDialActionBg;
+    color: variables.$speedDialActionTextColor;
 
     &:hover {
-        background: $speedDialActionHoverBg;
-        color: $speedDialActionTextHoverColor;
+        background: variables.$speedDialActionHoverBg;
+        color: variables.$speedDialActionTextHoverColor;
     }
 }
 
 .p-speeddial-direction-up {
     .p-speeddial-item {
-        margin: math.div($inlineSpacing, 2) 0;
+        margin: math.div(variables.$inlineSpacing, 2) 0;
 
         &:first-child {
-            margin-bottom: $inlineSpacing;
+            margin-bottom: variables.$inlineSpacing;
         }
     }
 }
 
 .p-speeddial-direction-down {
     .p-speeddial-item {
-        margin: math.div($inlineSpacing, 2) 0;
+        margin: math.div(variables.$inlineSpacing, 2) 0;
 
         &:first-child {
-            margin-top: $inlineSpacing;
+            margin-top: variables.$inlineSpacing;
         }
     }
 }
 
 .p-speeddial-direction-left {
     .p-speeddial-item {
-        margin: 0 math.div($inlineSpacing, 2);
+        margin: 0 math.div(variables.$inlineSpacing, 2);
 
         &:first-child {
-            margin-right: $inlineSpacing;
+            margin-right: variables.$inlineSpacing;
         }
     }
 }
 
 .p-speeddial-direction-right {
     .p-speeddial-item {
-        margin: 0 math.div($inlineSpacing, 2);
+        margin: 0 math.div(variables.$inlineSpacing, 2);
 
         &:first-child {
-            margin-left: $inlineSpacing;
+            margin-left: variables.$inlineSpacing;
         }
     }
 }
@@ -92,5 +95,5 @@
 }
 
 .p-speeddial-mask {
-    background-color: $maskBg;
+    background-color: variables.$maskBg;
 }

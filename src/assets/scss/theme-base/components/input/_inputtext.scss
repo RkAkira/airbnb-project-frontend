@@ -1,112 +1,116 @@
+@use "sass:list";
+@use "../_variables";
+@use "_mixins";
+
 .p-inputtext {
     font-family: var(--font-family);
     font-feature-settings: var(--font-feature-settings, normal);
-    font-size: $inputTextFontSize;
-    color: $inputTextColor;
-    background: $inputBg;
-    padding: $inputPadding;
-    border: $inputBorder;
-    transition: $formElementTransition;
+    font-size: variables.$inputTextFontSize;
+    color: variables.$inputTextColor;
+    background: variables.$inputBg;
+    padding: variables.$inputPadding;
+    border: variables.$inputBorder;
+    transition: variables.$formElementTransition;
     appearance: none;
-    border-radius: $borderRadius;
+    border-radius: variables.$borderRadius;
 
     &:enabled:hover {
-        border-color: $inputHoverBorderColor;
+        border-color: variables.$inputHoverBorderColor;
     }
 
     &:enabled:focus {
-        @include focused-input();
+        @include mixins.focused-input();
     }
 
     &.ng-dirty.ng-invalid {
-        @include invalid-input();
+        @include mixins.invalid-input();
     }
 
     &.p-inputtext-sm {
-        @include scaledFontSize($inputTextFontSize, $scaleSM);
-        @include scaledPadding($inputPadding, $scaleSM);
+        @include mixins.scaledFontSize(variables.$inputTextFontSize, variables.$scaleSM);
+        @include mixins.scaledPadding(variables.$inputPadding, variables.$scaleSM);
     }
 
     &.p-inputtext-lg {
-        @include scaledFontSize($inputTextFontSize, $scaleLG);
-        @include scaledPadding($inputPadding, $scaleLG);
+        @include mixins.scaledFontSize(variables.$inputTextFontSize, variables.$scaleLG);
+        @include mixins.scaledPadding(variables.$inputPadding, variables.$scaleLG);
     }
 }
 
 .p-float-label > label {
-    left: nth($inputPadding, 2);
-    color: $inputPlaceholderTextColor;
-    transition-duration: $transitionDuration;
+    left: list.nth(variables.$inputPadding, 2);
+    color: variables.$inputPlaceholderTextColor;
+    transition-duration: variables.$transitionDuration;
 }
 
 .p-float-label > .ng-invalid.ng-dirty + label {
-    color: $inputErrorBorderColor;
+    color: variables.$inputErrorBorderColor;
 }
 
 .p-input-icon-left > .p-icon-wrapper.p-icon,
 .p-input-icon-left > i:first-of-type {
-    left: nth($inputPadding, 2);
-    color: $inputIconColor;
+    left: list.nth(variables.$inputPadding, 2);
+    color: variables.$inputIconColor;
 }
 
 .p-input-icon-left > .p-inputtext {
-    padding-left: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    padding-left: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
 .p-input-icon-left.p-float-label > label {
-    left: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    left: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
 .p-input-icon-right > .p-icon-wrapper,
 .p-input-icon-right > i:last-of-type {
-    right: nth($inputPadding, 2);
-    color: $inputIconColor;
+    right: list.nth(variables.$inputPadding, 2);
+    color: variables.$inputIconColor;
 }
 
 .p-input-icon-right > .p-inputtext {
-    padding-right: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    padding-right: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
 .p-icon-field-left > .p-inputtext {
-    padding-left: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    padding-left: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
 .p-icon-field-left.p-float-label > label {
-    left: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    left: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
 .p-icon-field-right > .p-inputtext {
-    padding-right: nth($inputPadding, 2) * 2 + $primeIconFontSize;
+    padding-right: list.nth(variables.$inputPadding, 2) * 2 + variables.$primeIconFontSize;
 }
 
-@include placeholder {
-    color: $inputPlaceholderTextColor
+@include mixins.placeholder {
+    color: variables.$inputPlaceholderTextColor
 };
 
 .p-input-filled {
     .p-inputtext {
-        background-color: $inputFilledBg;
+        background-color: variables.$inputFilledBg;
 
         &:enabled:hover {
-            background-color: $inputFilledHoverBg;
+            background-color: variables.$inputFilledHoverBg;
         }
 
         &:enabled:focus {
-            background-color: $inputFilledFocusBg;
+            background-color: variables.$inputFilledFocusBg;
         }
     }
 }
 
 .p-inputtext-sm {
     .p-inputtext {
-        @include scaledFontSize($inputTextFontSize, $scaleSM);
-        @include scaledPadding($inputPadding, $scaleSM);
+        @include mixins.scaledFontSize(variables.$inputTextFontSize, variables.$scaleSM);
+        @include mixins.scaledPadding(variables.$inputPadding, variables.$scaleSM);
     }
 }
 
 .p-inputtext-lg {
     .p-inputtext {
-        @include scaledFontSize($inputTextFontSize, $scaleLG);
-        @include scaledPadding($inputPadding, $scaleLG);
+        @include mixins.scaledFontSize(variables.$inputTextFontSize, variables.$scaleLG);
+        @include mixins.scaledPadding(variables.$inputPadding, variables.$scaleLG);
     }
 }

@@ -1,13 +1,16 @@
+@use "sass:list";
+@use "../_variables";
+
 .p-icon-field-left{
     .p-input-icon:first-of-type {
-        left: nth($inputPadding, 2);
-        color: $inputIconColor;
+        left: list.nth(variables.$inputPadding, 2);
+        color: variables.$inputIconColor;
     }
 }
 
 .p-icon-field-right {
     .p-input-icon:last-of-type  {
-        right: nth($inputPadding, 2);
-        color: $inputIconColor;
+        right: list.nth(variables.$inputPadding, 2);
+        color: variables.$inputIconColor;
     }
 }

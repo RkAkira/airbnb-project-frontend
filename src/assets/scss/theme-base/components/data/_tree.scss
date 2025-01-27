@@ -1,134 +1,140 @@
+@use "sass:color";
+@use "sass:list";
+@use "../_variables";
+@use "_mixins";
+@use "../../../lara-light/blue/theme";
+
 .p-tree {
-	border: $panelContentBorder;
-	background: $panelContentBg;
-	color: $panelContentTextColor;
-	padding: $panelContentPadding;
-	border-radius: $borderRadius;
+	border: variables.$panelContentBorder;
+	background: variables.$panelContentBg;
+	color: variables.$panelContentTextColor;
+	padding: variables.$panelContentPadding;
+	border-radius: variables.$borderRadius;
 
 	.p-tree-container {
 		.p-treenode {
-			padding: $treeNodePadding;
+			padding: variables.$treeNodePadding;
 			outline: 0 none;
 
 			&:focus > .p-treenode-content {
-				@include focused-listitem();
+				@include mixins.focused-listitem();
 			}
 
 			.p-treenode-content {
-				border-radius: $borderRadius;
-				transition: $listItemTransition;
-				padding: $treeNodeContentPadding;
+				border-radius: variables.$borderRadius;
+				transition: variables.$listItemTransition;
+				padding: variables.$treeNodeContentPadding;
 
 				.p-tree-toggler {
-					margin-right: $inlineSpacing;
-					@include action-icon();
+					margin-right: variables.$inlineSpacing;
+					@include mixins.action-icon();
 				}
 
 				.p-treenode-icon {
-					margin-right: $inlineSpacing;
-					color: $treeNodeIconColor;
+					margin-right: variables.$inlineSpacing;
+					color: variables.$treeNodeIconColor;
 				}
 
 				.p-checkbox {
-					margin-right: $inlineSpacing;
+					margin-right: variables.$inlineSpacing;
 
 					.p-indeterminate {
 						.p-checkbox-icon {
-							color: $textColor;
+							color: variables.$textColor;
 						}
 					}
 				}
 
 				&.p-highlight {
-					background: $highlightBg;
-					color: $highlightTextColor;
+					background: theme.$highlightBg;
+					color: theme.$highlightTextColor;
 
 					.p-tree-toggler,
 					.p-treenode-icon {
-						color: $highlightTextColor;
+						color: theme.$highlightTextColor;
 
 						&:hover {
-							color: $highlightTextColor;
+							color: theme.$highlightTextColor;
 						}
 					}
 				}
 
 				&.p-treenode-selectable:not(.p-highlight):hover {
-					background: $inputListItemHoverBg;
-					color: $inputListItemTextHoverColor;
+					background: variables.$inputListItemHoverBg;
+					color: variables.$inputListItemTextHoverColor;
 				}
 
 				&.p-treenode-dragover {
-					background: $inputListItemHoverBg;
-					color: $inputListItemTextHoverColor;
+					background: variables.$inputListItemHoverBg;
+					color: variables.$inputListItemTextHoverColor;
 				}
 			}
 		}
 	}
 
 	.p-tree-filter-container {
-		margin-bottom: $inlineSpacing;
+		margin-bottom: variables.$inlineSpacing;
 
 		.p-tree-filter {
 			width: 100%;
-			padding-right: nth($inputPadding, 2) + $primeIconFontSize;
+			padding-right: list.nth(variables.$inputPadding, 2) + variables.$primeIconFontSize;
 		}
 
 		.p-tree-filter-icon {
-			right: nth($inputPadding, 2);
-			color: $inputIconColor;
+			right: list.nth(variables.$inputPadding, 2);
+			color: variables.$inputIconColor;
 		}
 	}
 
 	.p-treenode-children {
-		padding: $treeNodeChildrenPadding;
+		padding: variables.$treeNodeChildrenPadding;
 	}
 
 	.p-tree-loading-icon {
-		font-size: $loadingIconFontSize;
+		font-size: variables.$loadingIconFontSize;
 
 		&.p-icon {
-			width: $loadingIconFontSize;
-			height: $loadingIconFontSize;
+			width: variables.$loadingIconFontSize;
+			height: variables.$loadingIconFontSize;
 		}
 	}
 
 	.p-treenode-droppoint {
 		&.p-treenode-droppoint-active {
-			background-color: scale-color($highlightBg, $lightness: -20%);
+			background-color: color.scale(theme.$highlightBg, $lightness: -20%);
 		}
 	}
 
 	&.p-tree-horizontal {
 		.p-treenode {
 			.p-treenode-content {
-				border-radius: $borderRadius;
-				border: $panelContentBorder;
-				background-color: $panelContentBg;
-				color: $panelContentTextColor;
-				padding: $treeNodeContentPadding;
-				transition: $listItemTransition;
+				border-radius: variables.$borderRadius;
+				border: variables.$panelContentBorder;
+				background-color: variables.$panelContentBg;
+				color: variables.$panelContentTextColor;
+				padding: variables.$treeNodeContentPadding;
+				transition: variables.$listItemTransition;
 
 				&.p-highlight {
-					background-color: $highlightBg;
-					color: $highlightTextColor;
+					background-color: theme.$highlightBg;
+					color: theme.$highlightTextColor;
 
 					.p-treenode-icon {
-						color: $highlightTextColor;
+						color: theme.$highlightTextColor;
 					}
 				}
 
 				.p-tree-toggler {
-					margin-right: $inlineSpacing;
+					margin-right: variables.$inlineSpacing;
 				}
 
 				.p-treenode-icon {
-					color: $treeNodeIconColor;
-					margin-right: $inlineSpacing;
+					color: variables.$treeNodeIconColor;
+					margin-right: variables.$inlineSpacing;
 				}
 
 				.p-checkbox {
-					margin-right: $inlineSpacing;
+					margin-right: variables.$inlineSpacing;
 				}
 
 				.p-treenode-label:not(.p-highlight):hover {
@@ -137,12 +143,12 @@
 				}
 
 				&.p-treenode-selectable:not(.p-highlight):hover {
-					background: $inputListItemHoverBg;
-					color: $inputListItemTextHoverColor;
+					background: variables.$inputListItemHoverBg;
+					color: variables.$inputListItemTextHoverColor;
 				}
 
 				&:focus {
-					@include focused();
+					@include mixins.focused();
 				}
 			}
 		}
