@@ -6,21 +6,24 @@ import { ToastService } from '../../layout/toast.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { Step } from './step.model';
-import { CreatedListing, NewListing } from '../model/listing.model';
+import { CreatedListing, NewListing, NewListingInfo } from '../model/listing.model';
 import { NewListingPicture } from '../model/picture.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { State } from '../../core/model/state.model';
 import { CategoryName } from '../../layout/navbar/category/category.model';
 import { CategoryStepComponent } from "./category-step/category-step.component";
 import { FooterStepComponent } from '../../shared/footer-step/footer-step.component';
+import { LocationStepComponent } from "./step/location-step/location-step.component";
+import { InfoStepComponent } from "./step/info-step/info-step.component";
 
 @Component({
   selector: 'app-properties-create',
-  imports: [CategoryStepComponent, FooterStepComponent],
+  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
 })
 export class PropertiesCreateComponent {
+
 
   CATEGORY: string = "Category";
   LOCATION: string = "Location";
@@ -153,7 +156,7 @@ export class PropertiesCreateComponent {
   }
 
   previousStep(): void {
-    if(this.currentStep.idNext !==null ){
+    if(this.currentStep.idPrevious !==null ){
       this.currentStep = this.steps.filter((step:Step) => step.id === this.currentStep.idPrevious)[0];
     }
   }
@@ -168,6 +171,14 @@ export class PropertiesCreateComponent {
 
   onValidityChange(validity: boolean): void {
     this.currentStep.isValid = validity;
+  }
+
+  onLocationChange(newLocation: string) {
+    this.newListing.location = newLocation;
+  }
+
+  onInfoChange(newInfo: NewListingInfo) {
+    this.newListing.infos = newInfo;
   }
 
 
