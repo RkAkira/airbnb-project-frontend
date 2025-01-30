@@ -6,7 +6,7 @@ import { ToastService } from '../../layout/toast.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { Step } from './step.model';
-import { CreatedListing, NewListing, NewListingInfo } from '../model/listing.model';
+import { CreatedListing, Description, NewListing, NewListingInfo } from '../model/listing.model';
 import { NewListingPicture } from '../model/picture.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { State } from '../../core/model/state.model';
@@ -16,10 +16,13 @@ import { FooterStepComponent } from '../../shared/footer-step/footer-step.compon
 import { LocationStepComponent } from "./step/location-step/location-step.component";
 import { InfoStepComponent } from "./step/info-step/info-step.component";
 import { PictureStepComponent } from "./step/picture-step/picture-step.component";
+import { DescriptionStepComponent } from "./step/description-step/description-step.component";
+import { PriceStepComponent } from "./step/price-step/price-step.component";
+import { PriceVO } from '../model/listing-vo.model';
 
 @Component({
   selector: 'app-properties-create',
-  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent, PictureStepComponent],
+  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent, PictureStepComponent, DescriptionStepComponent, PriceStepComponent],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
 })
@@ -183,6 +186,14 @@ export class PropertiesCreateComponent {
 
   onPictureChange(newPictures: NewListingPicture[]){
     this.newListing.pictures = newPictures;
+  }
+
+  onDescriptionChange(newDescription: Description){
+    this.newListing.description = newDescription;
+  }
+
+  onPriceChange(newPrice: PriceVO){
+    this.newListing.price = newPrice;
   }
 
 
