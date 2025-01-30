@@ -6,7 +6,21 @@ import {CountryService} from "../country.service";
 import {ToastService} from "../../../../../layout/toast.service";
 import {OpenStreetMapProvider} from "leaflet-geosearch";
 import {Country} from "../country.model";
-import L, {circle, latLng, polygon, tileLayer} from "leaflet";
+import L, {circle, latLng, polygon, tileLayer, icon, Marker} from "leaflet";
+const iconRetinaUrl = 'assets/marker-icon-2x.png';
+const iconUrl = 'assets/marker-icon.png';
+const shadowUrl = 'assets/marker-shadow.png';
+const iconDefault = icon({
+  iconRetinaUrl,
+  iconUrl,
+  shadowUrl,
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  tooltipAnchor: [16, -28],
+  shadowSize: [41, 41]
+});
+Marker.prototype.options.icon = iconDefault;
 import {filter} from "rxjs";
 
 @Component({
@@ -38,6 +52,8 @@ export class LocationMapComponent {
 
   formatLabel = (country: Country) => country.flag + "   " + country.name.common;
 
+  
+
   options = {
     layers: [
       tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {maxZoom: 18, attribution: "..."}),
@@ -64,12 +80,12 @@ export class LocationMapComponent {
 
 
   constructor() {
+    this.configSearchControl();
     this.listenToLocation();
   }
 
   onMapReady(map: L.Map) {
     this.map = map;
-    this.configSearchControl();
   }
 
   private configSearchControl() {
@@ -120,4 +136,6 @@ export class LocationMapComponent {
   }
 
   protected readonly filter = filter;
+
+  
 }

@@ -15,10 +15,11 @@ import { CategoryStepComponent } from "./category-step/category-step.component";
 import { FooterStepComponent } from '../../shared/footer-step/footer-step.component';
 import { LocationStepComponent } from "./step/location-step/location-step.component";
 import { InfoStepComponent } from "./step/info-step/info-step.component";
+import { PictureStepComponent } from "./step/picture-step/picture-step.component";
 
 @Component({
   selector: 'app-properties-create',
-  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent],
+  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent, PictureStepComponent],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
 })
@@ -29,8 +30,8 @@ export class PropertiesCreateComponent {
   LOCATION: string = "Location";
   INFO: string = "Info";
   PRICE: string = "Price";
-  DESCRITPTION: string = "Description";
-  PHOTO: string = "Photo";
+  DESCRIPTION: string = "Description";
+  PHOTOS: string = "Photo";
 
   dialogDynamicRef = inject(DynamicDialogRef);
   listingService = inject(LandlordListingService);
@@ -43,38 +44,37 @@ export class PropertiesCreateComponent {
       id: this.CATEGORY,
       idNext: this.LOCATION,
       idPrevious: null,
-      isValid: false,
+      isValid: false
     },
     {
       id: this.LOCATION,
       idNext: this.INFO,
       idPrevious: this.CATEGORY,
-      isValid: false,
+      isValid: false
     },
     {
       id: this.INFO,
-      idNext: this.DESCRITPTION,
+      idNext: this.PHOTOS,
       idPrevious: this.LOCATION,
-      isValid: false,
+      isValid: false
     },
     {
-      id: this.DESCRITPTION,
-      idNext: this.PRICE,
+      id: this.PHOTOS,
+      idNext: this.DESCRIPTION,
       idPrevious: this.INFO,
-      isValid: false,
+      isValid: false
+    },
+    {
+      id: this.DESCRIPTION,
+      idNext: this.PRICE,
+      idPrevious: this.PHOTOS,
+      isValid: false
     },
     {
       id: this.PRICE,
-      idNext: this.PHOTO,
-      idPrevious: this.DESCRITPTION,
-      isValid: false,
-    },
-  
-    {
-      id: this.PHOTO,
       idNext: null,
-      idPrevious: this.PRICE,
-      isValid: false,
+      idPrevious: this.DESCRIPTION,
+      isValid: false
     }
   ];
 
@@ -179,6 +179,10 @@ export class PropertiesCreateComponent {
 
   onInfoChange(newInfo: NewListingInfo) {
     this.newListing.infos = newInfo;
+  }
+
+  onPictureChange(newPictures: NewListingPicture[]){
+    this.newListing.pictures = newPictures;
   }
 
 
