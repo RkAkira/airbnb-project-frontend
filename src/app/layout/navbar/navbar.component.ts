@@ -55,6 +55,7 @@ export class NavbarComponent implements OnInit {
 
   private fetchMenu(): MenuItem[] {
     if (this.authService.isAuthenticated()) {
+      console.log(this.authService);
       return [
         {
           label: "My properties",
