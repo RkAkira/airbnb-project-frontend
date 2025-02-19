@@ -5,7 +5,6 @@ import { map } from "rxjs";
 
 
 export const authorityRouteAccess: CanActivateFn = (next:ActivatedRouteSnapshot, state:RouterStateSnapshot)=>{
-
     const authService = inject(AuthService);
     return authService.fetchHttpUser(false).pipe(
         map(connectedUser => {

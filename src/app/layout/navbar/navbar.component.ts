@@ -55,7 +55,6 @@ export class NavbarComponent implements OnInit {
 
   private fetchMenu(): MenuItem[] {
     if (this.authService.isAuthenticated()) {
-      console.log(this.authService);
       return [
         {
           label: "My properties",
@@ -69,7 +68,7 @@ export class NavbarComponent implements OnInit {
         {
           label: "My reservation",
           routerLink: "landlord/reservation",
-          visible: this.hasToBeLandlord(),
+          //visible: this.hasToBeLandlord(),
         },
         {
           label: "Log out",
@@ -92,7 +91,7 @@ export class NavbarComponent implements OnInit {
   }
 
   hasToBeLandlord(): boolean {
-    return this.authService.hasAnyAuthority('ROLE_LANDLORD');
+    return this.authService.hasAnyAuthority("ROLE_LANDLORD");
   }
 
   openNewListing(): void {
