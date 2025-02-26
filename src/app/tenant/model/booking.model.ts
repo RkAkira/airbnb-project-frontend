@@ -1,5 +1,6 @@
 import { PriceVO } from "../../landlord/model/listing-vo.model";
 import { DisplayPicture } from "../../landlord/model/listing.model";
+import { Dayjs } from "dayjs";
 
 export interface BookedDatesDTOFromServer {
     startDate: Date;
@@ -14,5 +15,21 @@ export interface BookedListing {
     bookingPublicId: string,
     listingPublicId: string,
     loading: boolean  
+}
+
+export interface CreateBooking {
+    startDate: Date;
+    endDate: Date;
+    listingPublicId: string;
+}
+
+export interface BookedDatesDTOFromClient {
+    startDate: Dayjs;
+    endDate: Dayjs;
+}
+
+export interface BookedDatesDTOFromServer {
+    startDate: Date;
+    endDate: Date;
 }
 

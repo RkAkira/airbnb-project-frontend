@@ -40,7 +40,6 @@ export class CardListingComponent {
   private listenToListing(){
     effect(()=>{
       const listing = this.listing();
-      console.log(listing)
       this.countryService.getCountryByCode(listing.location).subscribe(
         {
           next: country => {

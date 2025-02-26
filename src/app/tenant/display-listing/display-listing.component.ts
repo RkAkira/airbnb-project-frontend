@@ -10,10 +10,11 @@ import { count, map } from 'rxjs';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 import { AvatarComponent } from "../../layout/navbar/avatar/avatar.component";
 import { NgClass } from '@angular/common';
+import { BookDateComponent } from "../book-date/book-date.component";
 
 @Component({
   selector: 'app-display-listing',
-  imports: [FaIconComponent, AvatarComponent, NgClass],
+  imports: [FaIconComponent, AvatarComponent, NgClass, BookDateComponent],
   templateUrl: './display-listing.component.html',
   styleUrl: './display-listing.component.scss'
 })
