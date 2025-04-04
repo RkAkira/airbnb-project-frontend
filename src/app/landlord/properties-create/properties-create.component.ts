@@ -6,28 +6,35 @@ import { ToastService } from '../../layout/toast.service';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
 import { Step } from './step.model';
-import { CreatedListing, NewListing } from '../model/listing.model';
+import { CreatedListing, Description, NewListing, NewListingInfo } from '../model/listing.model';
 import { NewListingPicture } from '../model/picture.model';
 import { HttpErrorResponse } from '@angular/common/http';
 import { State } from '../../core/model/state.model';
 import { CategoryName } from '../../layout/navbar/category/category.model';
 import { CategoryStepComponent } from "./category-step/category-step.component";
 import { FooterStepComponent } from '../../shared/footer-step/footer-step.component';
+import { LocationStepComponent } from "./step/location-step/location-step.component";
+import { InfoStepComponent } from "./step/info-step/info-step.component";
+import { PictureStepComponent } from "./step/picture-step/picture-step.component";
+import { DescriptionStepComponent } from "./step/description-step/description-step.component";
+import { PriceStepComponent } from "./step/price-step/price-step.component";
+import { PriceVO } from '../model/listing-vo.model';
 
 @Component({
   selector: 'app-properties-create',
-  imports: [CategoryStepComponent, FooterStepComponent],
+  imports: [CategoryStepComponent, FooterStepComponent, LocationStepComponent, InfoStepComponent, PictureStepComponent, DescriptionStepComponent, PriceStepComponent],
   templateUrl: './properties-create.component.html',
   styleUrl: './properties-create.component.scss'
 })
 export class PropertiesCreateComponent {
 
+
   CATEGORY: string = "Category";
   LOCATION: string = "Location";
   INFO: string = "Info";
   PRICE: string = "Price";
-  DESCRITPTION: string = "Description";
-  PHOTO: string = "Photo";
+  DESCRIPTION: string = "Description";
+  PHOTOS: string = "Photo";
 
   dialogDynamicRef = inject(DynamicDialogRef);
   listingService = inject(LandlordListingService);
@@ -40,38 +47,37 @@ export class PropertiesCreateComponent {
       id: this.CATEGORY,
       idNext: this.LOCATION,
       idPrevious: null,
-      isValid: false,
+      isValid: false
     },
     {
       id: this.LOCATION,
       idNext: this.INFO,
       idPrevious: this.CATEGORY,
-      isValid: false,
+      isValid: false
     },
     {
       id: this.INFO,
-      idNext: this.DESCRITPTION,
+      idNext: this.PHOTOS,
       idPrevious: this.LOCATION,
-      isValid: false,
+      isValid: false
     },
     {
-      id: this.DESCRITPTION,
-      idNext: this.PRICE,
+      id: this.PHOTOS,
+      idNext: this.DESCRIPTION,
       idPrevious: this.INFO,
-      isValid: false,
+      isValid: false
+    },
+    {
+      id: this.DESCRIPTION,
+      idNext: this.PRICE,
+      idPrevious: this.PHOTOS,
+      isValid: false
     },
     {
       id: this.PRICE,
-      idNext: this.PHOTO,
-      idPrevious: this.DESCRITPTION,
-      isValid: false,
-    },
-  
-    {
-      id: this.PHOTO,
       idNext: null,
-      idPrevious: this.PRICE,
-      isValid: false,
+      idPrevious: this.DESCRIPTION,
+      isValid: false
     }
   ];
 
@@ -153,7 +159,7 @@ export class PropertiesCreateComponent {
   }
 
   previousStep(): void {
-    if(this.currentStep.idNext !==null ){
+    if(this.currentStep.idPrevious !==null ){
       this.currentStep = this.steps.filter((step:Step) => step.id === this.currentStep.idPrevious)[0];
     }
   }
@@ -168,6 +174,26 @@ export class PropertiesCreateComponent {
 
   onValidityChange(validity: boolean): void {
     this.currentStep.isValid = validity;
+  }
+
+  onLocationChange(newLocation: string) {
+    this.newListing.location = newLocation;
+  }
+
+  onInfoChange(newInfo: NewListingInfo) {
+    this.newListing.infos = newInfo;
+  }
+
+  onPictureChange(newPictures: NewListingPicture[]){
+    this.newListing.pictures = newPictures;
+  }
+
+  onDescriptionChange(newDescription: Description){
+    this.newListing.description = newDescription;
+  }
+
+  onPriceChange(newPrice: PriceVO){
+    this.newListing.price = newPrice;
   }
 
 

@@ -21,10 +21,11 @@ export class AuthService {
 
   fetch(forceResync:boolean):void{
     this.fetchHttpUser(forceResync).subscribe({
-      next: user => 
-        this.fetchUser$.set(State.Builder<User>().forSuccess(user)),
+      next: user => {
+        this.fetchUser$.set(State.Builder<User>().forSuccess(user))
+      },
       error: err => {
-        if (err.status === HttpStatusCode.Unauthorized && this.isAuthenticated()) {
+        if (err.status === HttpStatusCode.Unauthorized && this.isAuthenticated()) {  
           this.fetchUser$.set(State.Builder<User>().forSuccess({email: this.notConnected,}));
         } else {
           this.fetchUser$.set(State.Builder<User>().forError(err));
@@ -61,13 +62,14 @@ export class AuthService {
     return this.http.get<User>(`${environment.API_URL}/auth/get-authenticated-user`, { params });
   }
 
-  hasAnyAuthority(authorities: string[]| string): boolean {
-    if(this.fetchUser$().value!.email === this.notConnected){
+  hasAnyAuthority(authorities: string[] | string): boolean {
+    if(this.fetchUser$().value!.email === this.notConnected) {
       return false;
     }
-    if (!Array.isArray(authorities)) {
+    if(!Array.isArray(authorities)) {
       authorities = [authorities];
     }
-    return this.fetchUser$().value!.authorities!.some((authority: string) => authorities.includes(authority));
+    return this.fetchUser$().value!.authorities!.map(authority => authorities.includes(authority)).includes(true);
+     
   }
 }

@@ -1,5 +1,4 @@
 import { AuthService } from './../../core/auth/auth.service';
-import { faLocation } from '@fortawesome/free-solid-svg-icons';
 import { Component, effect, inject, OnInit } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ButtonModule } from 'primeng/button';
@@ -12,10 +11,11 @@ import { MenuItem } from 'primeng/api';
 import { ToastService } from '../toast.service';
 import { User } from '../../core/model/user.model';
 import { PropertiesCreateComponent } from '../../landlord/properties-create/properties-create.component';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
-  imports: [ButtonModule, FontAwesomeModule, ToolbarModule, AvatarComponent, MenuModule, CategoryComponent],
+  imports: [ButtonModule, FontAwesomeModule, ToolbarModule, AvatarComponent, MenuModule, CategoryComponent, RouterModule],
   providers: [DialogService],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
@@ -91,7 +91,7 @@ export class NavbarComponent implements OnInit {
   }
 
   hasToBeLandlord(): boolean {
-    return this.authService.hasAnyAuthority('ROLE_LANDLORD');
+    return this.authService.hasAnyAuthority("ROLE_LANDLORD");
   }
 
   openNewListing(): void {
